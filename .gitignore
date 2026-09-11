@@ -1,0 +1,51 @@
+# Obsidian internal state (app config, plugins, cache) — local, never tracked.
+# 例外：snippets/ 是工作台视觉系统（vault-workbench.css），属知识资产 MUST 入库。
+.obsidian/*
+!.obsidian/snippets/
+
+# AI / Plugin local caches
+.smart-env/
+
+# CodeBuddy project-local runtime data (plans/teams/automations), never tracked
+.codebuddy/
+
+# Secret keys and credentials
+*.secret
+*.env
+config.yaml
+config.local.yaml
+.env*
+
+# System files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Claude / CodeBuddy local runtime data (settings, session transcripts, tool metadata) — regenerated constantly, not knowledge
+.claudian/
+
+# Agent / AI tool local runtime data —选择性入库：skills 定义、hooks、settings 是
+# 知识资产与库组件（healthcheck Check 8 硬校验 .claude/skills/ 存在），MUST 入库；
+# 其余（会话态等）保持忽略。
+.claude/*
+!.claude/settings.json
+!.claude/hooks/
+!.claude/skills/
+.agents/
+.opencode/
+.vault-exec-ledger.json
+
+# Vault transaction runtime state (lock / journal / backups) — scripts/vault_transaction.py
+.vault-tx/
+
+# Editor local config
+.vscode/

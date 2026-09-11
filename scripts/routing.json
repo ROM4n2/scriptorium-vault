@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "description": "Inbox consolidation routing (ADR-0001 #15): tag -> destination. 唯一消费者 = scripts/vault-inbox-consolidate.py（vault-inbox-triage.py 实测不消费路由）。tag 键必须为 namespace/name 形式；fallback 按 note_type 精确匹配，default 为 else 分支。目标文件存在性由 scripts/tests/routing 契约测试.py 与 vault-healthcheck.py 守护。",
+  "routes": [
+    {
+      "tag": "topic/git",
+      "type": "rule-append",
+      "name": "Git 工作流规范",
+      "target": "01-Rules/GIT-CONVENTIONS.md"
+    },
+    {
+      "tag": "topic/agent-conduct",
+      "type": "rule-append",
+      "name": "Agent 行为准则",
+      "target": "01-Rules/AGENT-CONDUCT.md"
+    }
+  ],
+  "fallback": {
+    "source-notes": {
+      "type": "source-article",
+      "target_dir": "99-Inbox",
+      "name": "source-notes (fallback)"
+    },
+    "default": {
+      "type": "rule-append",
+      "target": "01-Rules/INGESTION-WORKFLOW.md",
+      "name": "通用规则 (fallback)"
+    }
+  }
+}

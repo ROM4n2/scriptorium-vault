@@ -1,0 +1,1248 @@
+{
+  "schema_version": 2,
+  "description": "领域无关模板分发清单 v2（白名单优先，fail-closed）。定位转变（用户裁定 2026-09-10）：最终用户不一定是编程从业者，可能只是借用本模板学习任意领域——因此**引擎与治理规则随包，一切领域内容一律空壳化**。语义：keep = 原样分发；structure_only = 仅保留形态（内容由打包器清理/再生成）；exclude = 完全不出现在包内；stub_zones = 整个目录内容剔除，打包器在该目录生成引导 README（保留区结构）。**default.unmatched = exclude**。配套守卫：scripts/tests/test_template_manifest.py（schema / 无重叠 / 全区覆盖 / 领域无关 tripwire）。",
+  "default": {
+    "unmatched": "exclude",
+    "rationale": "隐私与错位风险不可逆，内容缺失可补救——默认剔除而非默认保留。"
+  },
+  "keep": [
+    {
+      "pattern": "AGENTS.md",
+      "rationale": "规范单一真值源（模板核心）"
+    },
+    {
+      "pattern": "CLAUDE.md",
+      "rationale": "多 Agent 入口（导出时物化为 AGENTS.md 内容副本）"
+    },
+    {
+      "pattern": "GEMINI.md",
+      "rationale": "多 Agent 入口（同上）"
+    },
+    {
+      "pattern": ".cursorrules",
+      "rationale": "多 Agent 入口（同上）"
+    },
+    {
+      "pattern": ".windsurfrules",
+      "rationale": "多 Agent 入口（同上）"
+    },
+    {
+      "pattern": "CONVENTIONS.md",
+      "rationale": "多 Agent 入口（同上）"
+    },
+    {
+      "pattern": "README.md",
+      "rationale": "库说明 + Clone 后必做 + 第 0 步 Obsidian 激活"
+    },
+    {
+      "pattern": "TUTORIAL.md",
+      "rationale": "使用教程（含无 Agent 手动路径）"
+    },
+    {
+      "pattern": "LICENSE",
+      "rationale": "代码许可（MIT）"
+    },
+    {
+      "pattern": "LICENSE-CONTENT",
+      "rationale": "内容许可（CC BY-SA 4.0）"
+    },
+    {
+      "pattern": "requirements.txt",
+      "rationale": "依赖声明（PyYAML + pytest）"
+    },
+    {
+      "pattern": ".gitignore",
+      "rationale": "忽略基线"
+    },
+    {
+      "pattern": ".gitattributes",
+      "rationale": "行尾纪律：shell/hooks MUST LF"
+    },
+    {
+      "pattern": "scripts/**",
+      "rationale": "**引擎**：事务/质量门/巡检/检索/仪表盘/账本/流转（模板真正价值）"
+    },
+    {
+      "pattern": ".github/**",
+      "rationale": "CI 工作流（pytest + quality + 洁净性 hermeticity）：接收者 fork 后自动校验，进包即用"
+    },
+    {
+      "pattern": ".obsidian/snippets/**",
+      "rationale": "**关键**：`vault-workbench.css` 是 Home 工作台的样式资产（`.gitignore` 已开例外）。此前漏在清单外，导致 README 第 0 步「已随库分发」的承诺与事实相反（2026-09-11 评估红牌）"
+    },
+    {
+      "pattern": ".githooks/**",
+      "rationale": "三道提交门本体"
+    },
+    {
+      "pattern": "hooks/**",
+      "rationale": "hooks.json 门禁 manifest"
+    },
+    {
+      "pattern": ".claude/**",
+      "rationale": "L2 技能定义 + hooks + settings（healthcheck Check 8 硬校验）"
+    },
+    {
+      "pattern": "Templates/**",
+      "rationale": "笔记类模板 14 个 + WORKMEMORY 件套（含 {{VAULT_ROOT}} 占位符）"
+    },
+    {
+      "pattern": "examples/**",
+      "rationale": "**最小示例组**：中性领域双版本笔记 + ADR + RCA，展示合规笔记格式"
+    },
+    {
+      "pattern": "skills/**",
+      "rationale": "**随包技能子集**（11 个领域无关的 `/vault-*` 技能 + 安装说明）：不装也能用，装了体验完整；白名单由 test_shipped_skills.py 钉死"
+    },
+    {
+      "pattern": "00-MOC/Home.md",
+      "rationale": "总控工作台（已泛化：控制舱+热力图保留，导航表去领域化）"
+    },
+    {
+      "pattern": "00-MOC/MOC-Rules.md",
+      "rationale": "规则中枢导航（治理类）"
+    },
+    {
+      "pattern": "01-Rules/VAULT-STRUCTURE.md",
+      "rationale": "目录职责总表——骨架的定义"
+    },
+    {
+      "pattern": "01-Rules/INGESTION-WORKFLOW.md",
+      "rationale": "摄取与沉淀管线（领域无关）"
+    },
+    {
+      "pattern": "01-Rules/DOC-GOVERNANCE.md",
+      "rationale": "文档治理与入口拆分（领域无关）"
+    },
+    {
+      "pattern": "01-Rules/AGENT-CONDUCT.md",
+      "rationale": "Agent 行为准则（领域无关）"
+    },
+    {
+      "pattern": "01-Rules/AGENT-AUDIT-CHECKLIST.md",
+      "rationale": "子 Agent 定义审计（领域无关）"
+    },
+    {
+      "pattern": "01-Rules/CROSS-AGENT-MEMORY.md",
+      "rationale": "跨 Agent 工作记忆协议（含 CORRECTION 账本）"
+    },
+    {
+      "pattern": "01-Rules/SESSION-SNAPSHOT-PROTECTION.md",
+      "rationale": "会话现场保护（compact 前后纪律）"
+    },
+    {
+      "pattern": "01-Rules/AUTOMATION-GOTCHAS.md",
+      "rationale": "自动化踩坑清单（引擎使用纪律）"
+    },
+    {
+      "pattern": "01-Rules/MARKDOWN-TABLE-APPEND.md",
+      "rationale": "表格追加机制（写入纪律）"
+    },
+    {
+      "pattern": "01-Rules/MARKDOWN-REGISTRY-VALIDATION.md",
+      "rationale": "注册表校验机制"
+    },
+    {
+      "pattern": "01-Rules/SKILL-AUTHORING-SPEC.md",
+      "rationale": "技能撰写规范"
+    },
+    {
+      "pattern": "01-Rules/GIT-CONVENTIONS.md",
+      "rationale": "提交与安全规范"
+    },
+    {
+      "pattern": "01-Rules/TESTING-PATTERNS.md",
+      "rationale": "测试纪律（模板自带测试套件需要）"
+    },
+    {
+      "pattern": "05-Tools/OBSIDIAN-SETUP.md",
+      "rationale": "第 0 步：Obsidian 端激活指引（插件/snippet/模板目录）"
+    },
+    {
+      "pattern": "05-Tools/CAPABILITY-MATRIX.md",
+      "rationale": "能力契约渲染视图"
+    },
+    {
+      "pattern": "05-Tools/SKILL-REGISTRY.md",
+      "rationale": "技能注册表（healthcheck Check 8 硬校验）"
+    },
+    {
+      "pattern": "05-Tools/capabilities.json",
+      "rationale": "能力契约真值源"
+    },
+    {
+      "pattern": "05-Tools/CLAUDE-CODE-SETUP-GUIDE.md",
+      "rationale": "harness 接入指引（领域无关）"
+    },
+    {
+      "pattern": "05-Tools/CLAUDE-CODE-SKILLS-GUIDE.md",
+      "rationale": "技能体系使用指引（领域无关）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-DISPATCH-GUIDE.md",
+      "rationale": "子代理派发规范（领域无关流程）"
+    },
+    {
+      "pattern": "05-Tools/Workflows/WORKFLOW-MASTER-LIFECYCLE.md",
+      "rationale": "全生命周期 SOP（领域无关流程）"
+    },
+    {
+      "pattern": "08-Projects/_template/**",
+      "rationale": "项目脚手架模板四件套（领域无关，接收者开新项目直接复制；2026-09-11 二评 08-Projects README 引用它却不存在）"
+    }
+  ],
+  "structure_only": [
+    {
+      "pattern": "dashboards/**",
+      "rationale": "**关键**：作者生成的仪表盘会引用私有笔记（conflicts/open-questions 实测泄漏个人项目名）；由接收者首夜再生成"
+    },
+    {
+      "pattern": "00-MOC/MOC-Languages.md",
+      "rationale": "领域 MOC 示例位：打包器置为引导骨架（原语言中枢属领域内容）"
+    },
+    {
+      "pattern": "00-MOC/MOC-Tools.md",
+      "rationale": "领域 MOC 示例位：置为引导骨架"
+    },
+    {
+      "pattern": "00-MOC/MOC-Sources.md",
+      "rationale": "领域 MOC 示例位：置为引导骨架"
+    },
+    {
+      "pattern": "00-MOC/knowledge-graph.canvas",
+      "rationale": "生成物，含作者全库拓扑，由接收者首夜重生成"
+    },
+    {
+      "pattern": "00-MOC/.graph-state.json",
+      "rationale": "生成物（图谱 diff 状态），不随包"
+    },
+    {
+      "pattern": "11-Agents/review-log.md",
+      "rationale": "审计索引规范保留，作者操作历史剥除"
+    },
+    {
+      "pattern": "11-Agents/corrections.md",
+      "rationale": "纠正账本 schema 保留，条目清空（协议 §2.5 骨架）"
+    },
+    {
+      "pattern": "11-Agents/claim-ledger.json",
+      "rationale": "派生账本由接收者首夜再生成，不携带作者全库清单"
+    },
+    {
+      "pattern": "11-Agents/logs/**",
+      "rationale": "目录与格式保留，按月审计明细属作者运行史，须清空"
+    }
+  ],
+  "skeleton": [
+    {
+      "path": "11-Agents/corrections.md",
+      "title": "纠正账本（初始为空）",
+      "body": "> 协议：CROSS-AGENT-MEMORY §2.5。追加制：open/in-progress 条目不删只改「落地状态」；成熟纠正蒸馏入 vault 后回填 `vault://` 路径并置 `closed`。\n\n| 日期 | 原话（用户） | 问题归属（领域/流程/工具） | 落地状态 | 蒸馏去向 |\n| --- | --- | --- | --- | --- |\n"
+    },
+    {
+      "path": "11-Agents/review-log.md",
+      "title": "Agent 操作审计索引",
+      "body": "> 本文件是审计**索引与规范**；逐条明细按月分片于 `11-Agents/logs/{YYYY-MM}.md`（由 `scripts/vault_audit.py` 自动追加，缺文件会自动建表）。\n\n记录规范：`| 时间 | Agent | 操作类型 | 涉及路径 | 摘要 |`。\n\n健康巡检、质量门禁与夜间维护均会自动登记，无需手工书写。\n"
+    },
+    {
+      "path": "11-Agents/logs/README.md",
+      "title": "月度审计明细",
+      "body": "> 本目录存放按月分片的审计明细（`{YYYY-MM}.md`），由 `scripts/vault_audit.py` 自动追加。初始为空是正常的——首次运行巡检/门禁后即出现。\n"
+    },
+    {
+      "path": "dashboards/README.md",
+      "title": "知识仪表盘（自动生成）",
+      "body": "> 本目录六页（最近来源 / 时间线 / 矛盾候选 / 开放问题 / 会话洞察 / 索引）由夜间流水线自动再生成，**请勿手工编辑**。\n\n手动刷新：\n\n```bash\npython scripts/vault-dashboards.py --apply\npython scripts/vault-insights.py --apply\n```\n\n首次生成前本目录只有这一个说明文件。\n"
+    },
+    {
+      "path": "00-MOC/MOC-Languages.md",
+      "title": "领域规范中枢（示例位）",
+      "body": "> 本 MOC 是**领域规范**的导航位。双版本制可迁移到任何领域：`<主题>-STANDARDS.md`（Agent 约束版，真值源）+ `<主题>-CHEATSHEET.md`（人类速查版，章节 1:1 对齐）。\n\n示例见 `examples/READING/`。定义你的领域后，把本文件改名为你的主题中枢（或就地重建索引）。\n"
+    },
+    {
+      "path": "00-MOC/MOC-Tools.md",
+      "title": "工具与方法中枢（示例位）",
+      "body": "> 本 MOC 是**工具/方法**的导航位：把你所在领域的方法论、工具指南、工作流沉淀在此索引。\n"
+    },
+    {
+      "path": "00-MOC/MOC-Sources.md",
+      "title": "外部知识源中枢（示例位）",
+      "body": "> 本 MOC 是**外部知识源**（书/视频/文章/论文）研读沉淀的导航位。起稿用 `Templates/tpl-source-note.md`。\n"
+    }
+  ],
+  "content_rewrites": [
+    {
+      "pattern": "*",
+      "rationale": "全局（fnmatch `*` 跨路径分隔符，覆盖顶层文件）：把指向被剔规范的引用改写为**自建占位**（诚实且可执行），并抹掉私有项目名残留",
+      "replace_text": [
+        {
+          "find": "05-Tools/Subagents/SUBAGENT-DISPATCH-GUIDE",
+          "replace": "05-Tools/Subagents/〔子代理派发指南〕"
+        },
+        {
+          "find": "01-Rules/CODING-UNIVERSAL.md",
+          "replace": "01-Rules/〔你的领域通用规范〕.md"
+        },
+        {
+          "find": "01-Rules/CODING-UNIVERSAL",
+          "replace": "01-Rules/〔你的领域通用规范〕"
+        },
+        {
+          "find": "CODING-UNIVERSAL.md",
+          "replace": "〔你的领域通用规范〕.md"
+        },
+        {
+          "find": "CODING-UNIVERSAL",
+          "replace": "〔你的领域通用规范〕"
+        },
+        {
+          "find": "01-Rules/USER-PROFILE.md",
+          "replace": "01-Rules/〔你的个人画像〕.md"
+        },
+        {
+          "find": "01-Rules/USER-PROFILE",
+          "replace": "01-Rules/〔你的个人画像〕"
+        },
+        {
+          "find": "USER-PROFILE.md",
+          "replace": "〔你的个人画像〕.md"
+        },
+        {
+          "find": "USER-PROFILE",
+          "replace": "〔你的个人画像〕"
+        },
+        {
+          "find": "01-Rules/ENVIRONMENT-LOCAL.md",
+          "replace": "05-Tools/OBSIDIAN-SETUP.md"
+        },
+        {
+          "find": "01-Rules/ENVIRONMENT-LOCAL",
+          "replace": "05-Tools/OBSIDIAN-SETUP"
+        },
+        {
+          "find": "ENVIRONMENT-LOCAL.md",
+          "replace": "OBSIDIAN-SETUP.md"
+        },
+        {
+          "find": "ENVIRONMENT-LOCAL",
+          "replace": "环境说明"
+        },
+        {
+          "find": "CONCURRENCY-PATTERNS.md",
+          "replace": "〔领域专题规范〕.md"
+        },
+        {
+          "find": "CONCURRENCY-PATTERNS",
+          "replace": "领域专题规范"
+        },
+        {
+          "find": "ERROR-HANDLING-PATTERNS.md",
+          "replace": "〔领域专题规范〕.md"
+        },
+        {
+          "find": "ERROR-HANDLING-PATTERNS",
+          "replace": "领域专题规范"
+        },
+        {
+          "find": "ENDPOINT-CONTRACT-FRONTEND-SYNC.md",
+          "replace": "〔领域协作规范〕.md"
+        },
+        {
+          "find": "ENDPOINT-CONTRACT-FRONTEND-SYNC",
+          "replace": "领域协作规范"
+        },
+        {
+          "find": "DATABASE-MIGRATION-IDEMPOTENCY.md",
+          "replace": "〔领域专题规范〕.md"
+        },
+        {
+          "find": "DATABASE-MIGRATION-IDEMPOTENCY",
+          "replace": "领域专题规范"
+        },
+        {
+          "find": "DATASET-HYGIENE-PATTERNS.md",
+          "replace": "〔数据规范〕.md"
+        },
+        {
+          "find": "DATASET-HYGIENE-PATTERNS",
+          "replace": "数据规范"
+        },
+        {
+          "find": "PYTHON-PACKAGING.md",
+          "replace": "〔工具链规范〕.md"
+        },
+        {
+          "find": "PYTHON-PACKAGING",
+          "replace": "工具链规范"
+        },
+        {
+          "find": "AGENT-SDK-PATTERNS",
+          "replace": "Agent 集成规范"
+        },
+        {
+          "find": "EXTERNAL-PR-CITATION",
+          "replace": "外部引用规范"
+        },
+        {
+          "find": "SUBAGENT-DISPATCH-GUIDE",
+          "replace": "〔子代理派发指南〕"
+        },
+        {
+          "find": "SUBAGENT-CODE-REVIEWER",
+          "replace": "子代理复核角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-BENCHMARK-PROFILER",
+          "replace": "子代理性能角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-DBA-OPTIMIZER",
+          "replace": "子代理存储角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-FRONTEND-ARCHITECT",
+          "replace": "子代理前端角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-REFACTORER",
+          "replace": "子代理重构角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-DEBUGGER",
+          "replace": "子代理排障角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-RESEARCHER",
+          "replace": "子代理调研角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-SRE-CHRONICLER",
+          "replace": "子代理可靠性角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-PRODUCT-UX",
+          "replace": "子代理体验角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-INTERVIEW-COACH",
+          "replace": "子代理面试角色（自建）"
+        },
+        {
+          "find": "SUBAGENT-CODEGRAPH-EXPLORER",
+          "replace": "子代理图谱角色（自建）"
+        },
+        {
+          "find": "ERRGROUP-CONCURRENCY-DESIGN",
+          "replace": "领域专题规范"
+        },
+        {
+          "find": "FRONTEND-DESIGN-PATTERNS",
+          "replace": "领域专题规范"
+        },
+        {
+          "find": "01-Rules/EXTERNAL-PR-CITATION.md",
+          "replace": "01-Rules/〔外部引用规范〕.md"
+        },
+        {
+          "find": "01-Rules/AGENT-SDK-PATTERNS.md",
+          "replace": "01-Rules/〔Agent 集成规范〕.md"
+        },
+        {
+          "find": "SUBAGENT-",
+          "replace": "子代理-"
+        },
+        {
+          "find": "WORKFLOW-FEATURE-TDD",
+          "replace": "工作流文档"
+        },
+        {
+          "find": "WORKFLOW-DEBUGGING",
+          "replace": "工作流文档"
+        },
+        {
+          "find": "WORKFLOW-CAREER-DRILL",
+          "replace": "工作流文档"
+        },
+        {
+          "find": "test_routing_loader",
+          "replace": "routing 契约测试"
+        },
+        {
+          "find": "KNOWLEDGE-VAULT-PLAN",
+          "replace": "项目档案"
+        },
+        {
+          "find": "vault-evolution",
+          "replace": "项目档案"
+        },
+        {
+          "find": "Knowledge-Architecture.canvas",
+          "replace": "知识架构白板（自建）"
+        },
+        {
+          "find": "Knowledge-Architecture",
+          "replace": "知识架构白板（自建）"
+        },
+        {
+          "find": "config/capabilities.json",
+          "replace": "05-Tools/capabilities.json"
+        },
+        {
+          "find": "08-Projects/项目档案/CLAIM-LEDGER-SCHEMA.md",
+          "replace": "08-Projects/README.md"
+        },
+        {
+          "find": "knowledge-graph.canvas",
+          "replace": "知识图谱白板（自动生成）"
+        },
+        {
+          "find": "claim-ledger.json",
+          "replace": "可信度账本「自动生成」"
+        },
+        {
+          "find": "CC-SWITCH-GUIDE",
+          "replace": "环境配置指南"
+        },
+        {
+          "find": "tpl-baguwen",
+          "replace": "（已移除的求职模板）"
+        },
+        {
+          "find": "tpl-ncre-distilled",
+          "replace": "（已移除的考试模板）"
+        },
+        {
+          "find": "tpl-ncre-wrongbook",
+          "replace": "（已移除的考试模板）"
+        },
+        {
+          "find": "MIT-6.824",
+          "replace": "该课程实验"
+        },
+        {
+          "find": "CMU-15-445",
+          "replace": "该课程实验"
+        },
+        {
+          "find": "Stanford-CS144",
+          "replace": "该课程实验"
+        },
+        {
+          "find": "MIT-6.S081",
+          "replace": "该课程实验"
+        },
+        {
+          "find": "SECKILL-HIGH-CONCURRENCY",
+          "replace": "系统设计笔记"
+        },
+        {
+          "find": "SHORT-URL-SYSTEM-DESIGN",
+          "replace": "系统设计笔记"
+        },
+        {
+          "find": "DISTRIBUTED-RATE-LIMITER",
+          "replace": "系统设计笔记"
+        },
+        {
+          "find": "ALGORITHM-PATTERNS-CHEATSHEET",
+          "replace": "速查笔记"
+        },
+        {
+          "find": "NCRE3-Network",
+          "replace": "考试备考"
+        },
+        {
+          "find": "NCRE3",
+          "replace": "考试备考"
+        },
+        {
+          "find": "BAGUWEN",
+          "replace": "考点笔记"
+        },
+        {
+          "find": "PITCH-3MIN-DEV",
+          "replace": "个人自述"
+        },
+        {
+          "find": "PITCH-3MIN",
+          "replace": "个人自述"
+        },
+        {
+          "find": "DELECTOR-ZETTELKASTEN",
+          "replace": "示例项目笔记"
+        },
+        {
+          "find": "DELECTOR-MOC",
+          "replace": "示例项目 MOC"
+        },
+        {
+          "find": "DELECTOR",
+          "replace": "示例项目"
+        },
+        {
+          "find": "ListenCode",
+          "replace": "示例项目"
+        },
+        {
+          "find": "lover-instance",
+          "replace": "示例项目"
+        },
+        {
+          "find": "多语言（当前 5）工程规范 · 顶校硬核实验",
+          "replace": "多领域规范与课程实验区（待自建）",
+          "rationale": "Home 首屏定位句与骨架现实对齐"
+        },
+        {
+          "find": "多语言（当前 5）工程规范",
+          "replace": "多领域规范（待自建）",
+          "rationale": "同上"
+        },
+        {
+          "find": "顶校硬核实验",
+          "replace": "硬核课程实验（待自建）",
+          "rationale": "同上"
+        },
+        {
+          "find": "顶校课程实验",
+          "replace": "课程实验",
+          "rationale": "同上"
+        },
+        {
+          "find": "分布式课程实验 Raft, 数据库课程实验, 网络课程实验 网络",
+          "replace": "课程实验组合（待自建）",
+          "rationale": "去标识化组合后的别扭串修顺"
+        },
+        {
+          "find": "核心资产代表：Go规范, Python规范, Rust规范",
+          "replace": "核心资产：你的领域规范（待自建）",
+          "rationale": "Home 资产行与骨架现实对齐"
+        },
+        {
+          "find": "08-Projects/项目档案/01-ADR/0001-*.md",
+          "replace": "examples/ADR/0001-example-reading-workflow.md",
+          "rationale": "TUTORIAL 通配断链改指随包真实示例"
+        }
+      ]
+    }
+  ],
+  "lint_path_allowlist": [
+    {
+      "pattern": "dashboards/*",
+      "rationale": "仪表盘为夜间生成物，首夜前不存在属正常"
+    },
+    {
+      "pattern": "00-MOC/.graph-state.json",
+      "rationale": "图谱 diff 状态为生成物"
+    },
+    {
+      "pattern": "scripts/x.py",
+      "rationale": "文档中的示意占位路径（非真实文件）"
+    },
+    {
+      "pattern": "exact/path/to/file.py",
+      "rationale": "技能文档中的示意占位路径"
+    },
+    {
+      "pattern": "tests/test_exact_feature.py",
+      "rationale": "技能文档中的示意占位路径"
+    },
+    {
+      "pattern": "cold/digest-YYYY-MM.md",
+      "rationale": "WORKMEMORY 命名模式（跨库）"
+    },
+    {
+      "pattern": "WORKMEMORY/*",
+      "rationale": "项目侧共享记忆（位于项目仓库，不在本库）"
+    },
+    {
+      "pattern": "logs/*.md",
+      "rationale": "按月分片的审计明细命名模式（夜间生成）"
+    },
+    {
+      "pattern": "vault-tools/*",
+      "rationale": "相对技能目录的引用"
+    },
+    {
+      "pattern": "*/.claude/skills/*",
+      "rationale": "技能安装路径示例"
+    },
+    {
+      "pattern": "Templates/workmemory/*",
+      "rationale": "下发到项目的件套（在本库存在，但引用常写成相对路径）"
+    },
+    {
+      "pattern": "11-Agents/logs/*",
+      "rationale": "按月分片审计日志命名模式（夜间生成）"
+    }
+  ],
+  "lint_skip": [
+    {
+      "pattern": "scripts/vault-template-manifest.json",
+      "rationale": "清单自身的规则字面量（find/pattern）必然包含被剔文件名词干"
+    },
+    {
+      "pattern": "scripts/vault-template-lint.py",
+      "rationale": "lint 工具的说明文字会举例禁用 token"
+    },
+    {
+      "pattern": "scripts/vault-export-template.py",
+      "rationale": "导出器的说明与默认值含被剔引用示例"
+    },
+    {
+      "pattern": "scripts/tests/**",
+      "rationale": "测试以被剔内容为 fixture"
+    }
+  ],
+  "lint_forbidden": [
+    {
+      "token": "vault-evolution",
+      "rationale": "本库自身演化史（私有项目区）"
+    },
+    {
+      "token": "Knowledge-Architecture.canvas",
+      "rationale": "作者策展白板（已剔除）"
+    },
+    {
+      "token": "claim-ledger.json",
+      "rationale": "作者全库派生账本（由接收者首夜再生成）"
+    },
+    {
+      "token": "CC-SWITCH-GUIDE",
+      "rationale": "含作者环境路径的工具指南（已剔除）"
+    },
+    {
+      "token": "SUBAGENT-CODE-REVIEWER",
+      "rationale": "编程专家席位定义（已整体剔除）"
+    },
+    {
+      "token": "SUBAGENT-BENCHMARK-PROFILER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-DBA-OPTIMIZER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-FRONTEND-ARCHITECT",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-REFACTORER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-DEBUGGER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-RESEARCHER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-SRE-CHRONICLER",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-PRODUCT-UX",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-INTERVIEW-COACH",
+      "rationale": "同上"
+    },
+    {
+      "token": "SUBAGENT-CODEGRAPH-EXPLORER",
+      "rationale": "同上"
+    },
+    {
+      "token": "WORKFLOW-FEATURE-TDD",
+      "rationale": "功能开发流程（已剔除）"
+    },
+    {
+      "token": "WORKFLOW-DEBUGGING",
+      "rationale": "代码排障流程（已剔除）"
+    },
+    {
+      "token": "WORKFLOW-CAREER-DRILL",
+      "rationale": "求职演练流程（已剔除）"
+    },
+    {
+      "token": "tpl-baguwen",
+      "rationale": "求职八股模板（已剔除）"
+    },
+    {
+      "token": "tpl-ncre",
+      "rationale": "考研/考证模板（已剔除）"
+    },
+    {
+      "token": "MIT-6.824",
+      "rationale": "作者学术课程内容（已空壳化）"
+    },
+    {
+      "token": "CMU-15-445",
+      "rationale": "同上"
+    },
+    {
+      "token": "Stanford-CS144",
+      "rationale": "同上"
+    },
+    {
+      "token": "MIT-6.S081",
+      "rationale": "同上"
+    },
+    {
+      "token": "SECKILL",
+      "rationale": "秒杀系统设计（作者的 CS 领域笔记，已空壳化）"
+    },
+    {
+      "token": "SHORT-URL",
+      "rationale": "短链系统设计（同上）"
+    },
+    {
+      "token": "DISTRIBUTED-RATE-LIMITER",
+      "rationale": "限流系统设计（同上）"
+    },
+    {
+      "token": "ALGORITHM-PATTERNS",
+      "rationale": "算法速查（同上）"
+    },
+    {
+      "token": "BAGUWEN",
+      "rationale": "八股笔记（同上）"
+    },
+    {
+      "token": "NCRE3",
+      "rationale": "等级考试备考（同上）"
+    },
+    {
+      "token": "PITCH-3MIN",
+      "rationale": "求职自述（同上）"
+    },
+    {
+      "token": "DELECTOR",
+      "rationale": "私有项目名（去标识化后不应出现）"
+    },
+    {
+      "token": "ListenCode",
+      "rationale": "私有项目名"
+    },
+    {
+      "token": "lover-instance",
+      "rationale": "私有项目名（合规敏感）"
+    },
+    {
+      "token": "delector",
+      "rationale": "项目名小写变体（pragma 与路由命名空间）"
+    }
+  ],
+  "deidentify": [
+    {
+      "find": "C:\\Users\\Haoyu",
+      "replace": "{{USER_HOME}}",
+      "rationale": "作者家目录路径"
+    },
+    {
+      "find": "C:/Users/Haoyu",
+      "replace": "{{USER_HOME}}",
+      "rationale": "同上（正斜杠形态）"
+    },
+    {
+      "find": "d:\\Obsidian\\Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "作者库根绝对路径（小写盘符 + 反斜杠）"
+    },
+    {
+      "find": "D:\\Obsidian\\Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "同上（大写盘符）"
+    },
+    {
+      "find": "d:/Obsidian/Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "同上（小写盘符 + 正斜杠）"
+    },
+    {
+      "find": "D:/Obsidian/Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "同上（大写盘符 + 正斜杠）"
+    },
+    {
+      "find": "D:\\Code\\DeLector",
+      "replace": "{{PROJECT_PATH}}",
+      "rationale": "作者项目路径"
+    },
+    {
+      "find": "D:\\Code",
+      "replace": "{{CODE_ROOT}}",
+      "rationale": "作者代码根（反斜杠）"
+    },
+    {
+      "find": "D:/Code",
+      "replace": "{{CODE_ROOT}}",
+      "rationale": "作者代码根（正斜杠；2026-09-11 评估发现漏网）"
+    },
+    {
+      "find": "d:/Code",
+      "replace": "{{CODE_ROOT}}",
+      "rationale": "同上（小写盘符）"
+    },
+    {
+      "find": "DeLector",
+      "replace": "示例项目",
+      "rationale": "个人项目名"
+    },
+    {
+      "find": "ListenCode",
+      "replace": "示例项目",
+      "rationale": "个人项目名"
+    },
+    {
+      "find": "lover-instance",
+      "replace": "示例项目",
+      "rationale": "个人项目名（合规敏感，双重保险）"
+    },
+    {
+      "find": "ROM4n2",
+      "replace": "{{AUTHOR}}",
+      "rationale": "作者昵称"
+    },
+    {
+      "find": "Haoyu",
+      "replace": "{{AUTHOR}}",
+      "rationale": "作者名（不适用于 LICENSE，见 skip）"
+    },
+    {
+      "find": "delector:allow-secret",
+      "replace": "tool:allow-secret",
+      "rationale": "工具名派生的 pragma 关键字（大小写变体，双跑兜底）"
+    },
+    {
+      "find": "project/delector",
+      "replace": "project/demo-project",
+      "rationale": "路由命名空间里的项目名（小写变体）"
+    },
+    {
+      "find": "d:\\\\Obsidian\\\\Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "转义双反斜杠形（docstring/JS 字面量，2026-09-11 二评漏网）"
+    },
+    {
+      "find": "D:\\\\Obsidian\\\\Coding",
+      "replace": "{{VAULT_ROOT}}",
+      "rationale": "同上大写盘符"
+    },
+    {
+      "find": "D:\\\\Code",
+      "replace": "{{CODE_ROOT}}",
+      "rationale": "转义形（vault-tools/mcp 脚本内）"
+    },
+    {
+      "find": "d:\\\\Code",
+      "replace": "{{CODE_ROOT}}",
+      "rationale": "同上小写"
+    },
+    {
+      "find": "d:\\Obsidian",
+      "replace": "{{OBSIDIAN_ROOT}}",
+      "rationale": "裸库父目录（置于长规则之后，兜底变体）"
+    },
+    {
+      "find": "MIT 6.824",
+      "replace": "分布式课程实验",
+      "rationale": "课程 token 空格形"
+    },
+    {
+      "find": "CMU 15-445",
+      "replace": "数据库课程实验",
+      "rationale": "同上"
+    },
+    {
+      "find": "Stanford CS144",
+      "replace": "网络课程实验",
+      "rationale": "同上"
+    },
+    {
+      "find": "CS144",
+      "replace": "网络课程实验",
+      "rationale": "裸形（置于 Stanford 形之后）"
+    },
+    {
+      "find": "xv6",
+      "replace": "操作系统课程实验",
+      "rationale": "同上"
+    },
+    {
+      "find": "09-Career/Baguwen",
+      "replace": "09-Career/Exam-Prep",
+      "rationale": "目录路径形"
+    },
+    {
+      "find": "Baguwen",
+      "replace": "Exam-Prep",
+      "rationale": "大小写变体"
+    },
+    {
+      "find": "baguwen",
+      "replace": "exam-prep",
+      "rationale": "小写变体（脚本关键词）"
+    },
+    {
+      "find": "八股",
+      "replace": "高频考点",
+      "rationale": "中文原词（AGENTS/文档）"
+    }
+  ],
+  "deidentify_skip": [
+    {
+      "pattern": "LICENSE",
+      "rationale": "MIT 要求保留原始版权人署名"
+    },
+    {
+      "pattern": "LICENSE-CONTENT",
+      "rationale": "CC 许可的适用范围声明属法律文本"
+    },
+    {
+      "pattern": "scripts/vault-template-manifest.json",
+      "rationale": "**关键**：本文件的 `deidentify.find` 字段必须保持原始 token 字面量——被自身规则改写后会退化成 find==replace 的空操作，接收者用它再导出时去标识化将静默失效（2026-09-11 实测的连锁故障）"
+    }
+  ],
+  "drop": [
+    {
+      "pattern": "Templates/tpl-baguwen.md",
+      "rationale": "求职八股模板——与领域无关定位冲突（2026-09-11 评估发现）"
+    },
+    {
+      "pattern": "scripts/tests/test_template_lint.py",
+      "rationale": "同上：lint 测试的 fixture 依赖字面被剔 token 触发命中；包内由 publish 自检真实运行 lint 兜底"
+    },
+    {
+      "pattern": "scripts/tests/test_release_hardening.py",
+      "rationale": "同上：加固 tripwire 以字面路径 token 为断言对象，导出时被改写后自相矛盾（2026-09-11 实测）；保留在源库守护后续修改"
+    },
+    {
+      "pattern": "Templates/tpl-ncre-distilled.md",
+      "rationale": "考研/考证蒸馏模板——同上"
+    },
+    {
+      "pattern": "Templates/tpl-ncre-wrongbook.md",
+      "rationale": "考研错题本模板——同上"
+    },
+    {
+      "pattern": "scripts/tests/test_export_template.py",
+      "rationale": "该测试以字面个人 token（作者名/项目名）为去标识化 fixture——导出时会被自身规则改写而自相矛盾；模板保留导出器实现即可"
+    },
+    {
+      "pattern": "scripts/tests/test_routing_loader.py",
+      "rationale": "fixture 断言作者领域的 lang/* dual 路由表；路由被裁剪后必红，导出时丢弃（模板不含该路由契约）"
+    },
+    {
+      "pattern": "scripts/tests/test_inbox_consolidate_tx.py",
+      "rationale": "fixture 以作者路由表构造 3 类归档预期（含 dual）；裁剪后必红"
+    },
+    {
+      "pattern": "scripts/tests/test_inbox_consolidate_apply_alias.py",
+      "rationale": "同上：fixture 依赖作者 dual 路由产生非空计划"
+    },
+    {
+      "pattern": "scripts/tests/test_template_manifest.py",
+      "rationale": "按作者库的 15 个内容区与清单自检；模板区结构不同，导出后无意义"
+    }
+  ],
+  "exclude": [
+    {
+      "pattern": "01-Rules/CODING-UNIVERSAL.md",
+      "rationale": "coding 领域规则——领域无关模板 MUST NOT 携带"
+    },
+    {
+      "pattern": "01-Rules/CONCURRENCY-PATTERNS.md",
+      "rationale": "coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/ERROR-HANDLING-PATTERNS.md",
+      "rationale": "coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/ERRGROUP-CONCURRENCY-DESIGN.md",
+      "rationale": "coding 领域规则（Go errgroup）"
+    },
+    {
+      "pattern": "01-Rules/DATABASE-MIGRATION-IDEMPOTENCY.md",
+      "rationale": "coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/DATASET-HYGIENE-PATTERNS.md",
+      "rationale": "coding/数据领域规则"
+    },
+    {
+      "pattern": "01-Rules/ENDPOINT-CONTRACT-FRONTEND-SYNC.md",
+      "rationale": "前端 coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/FRONTEND-DESIGN-PATTERNS.md",
+      "rationale": "前端 coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/PYTHON-PACKAGING.md",
+      "rationale": "coding 领域规则"
+    },
+    {
+      "pattern": "01-Rules/AGENT-SDK-PATTERNS.md",
+      "rationale": "coding 领域规则（pi-agent SDK）"
+    },
+    {
+      "pattern": "01-Rules/EXTERNAL-PR-CITATION.md",
+      "rationale": "coding 协作领域规则（外部 PR 引用）"
+    },
+    {
+      "pattern": "01-Rules/USER-PROFILE.md",
+      "rationale": "**个人规则**：开发者画像"
+    },
+    {
+      "pattern": "01-Rules/ENVIRONMENT-LOCAL.md",
+      "rationale": "**个人规则**：本机环境事实（含用户名/路径）"
+    },
+    {
+      "pattern": "00-MOC/Knowledge-Architecture.canvas",
+      "rationale": "作者策展的 CS 知识架构白板——领域内容"
+    },
+    {
+      "pattern": "05-Tools/CC-SWITCH-GUIDE.md",
+      "rationale": "个人环境（cc-switch 修复记录，含用户名路径）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-BENCHMARK-PROFILER.md",
+      "rationale": "coding 专家席位（Go 压测剖析）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-CODE-REVIEWER.md",
+      "rationale": "coding 专家席位"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-CODEGRAPH-EXPLORER.md",
+      "rationale": "coding 专家席位（符号图谱）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-DBA-OPTIMIZER.md",
+      "rationale": "coding 专家席位（SQL 调优）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-DEBUGGER.md",
+      "rationale": "coding 专家席位（代码根因排障）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-FRONTEND-ARCHITECT.md",
+      "rationale": "coding 专家席位（前端架构）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-INTERVIEW-COACH.md",
+      "rationale": "coding 领域（求职口试）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-PRODUCT-UX.md",
+      "rationale": "coding 专家席位（产品体验，语境绑定工程）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-REFACTORER.md",
+      "rationale": "coding 专家席位（重构）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-RESEARCHER.md",
+      "rationale": "coding 专家席位（代码调研）"
+    },
+    {
+      "pattern": "05-Tools/Subagents/SUBAGENT-SRE-CHRONICLER.md",
+      "rationale": "coding 专家席位（SRE 记录）"
+    },
+    {
+      "pattern": "05-Tools/Workflows/WORKFLOW-CAREER-DRILL.md",
+      "rationale": "coding 领域（求职演练）"
+    },
+    {
+      "pattern": "05-Tools/Workflows/WORKFLOW-DEBUGGING.md",
+      "rationale": "coding 领域（代码排障流程）"
+    },
+    {
+      "pattern": "05-Tools/Workflows/WORKFLOW-FEATURE-TDD.md",
+      "rationale": "coding 领域（功能 TDD 流程）"
+    }
+  ],
+  "stub_zones": [
+    {
+      "path": "02-Fundamentals",
+      "readme_hint": "本区用于承载你的领域基础学科笔记（原内容为 CS 四大件，已剔除）。建议按「一篇笔记一个主题 + STANDARDS/CHEATSHEET 双版本」组织。"
+    },
+    {
+      "path": "03-Languages",
+      "readme_hint": "本区用于承载你的领域规范矩阵（原内容为 7 门编程语言双版本规范，已剔除）。双版本制可迁移到任意领域：STANDARDS = 严格规范（Agent 约束），CHEATSHEET = 一句话速查（人读）。"
+    },
+    {
+      "path": "04-Systems",
+      "readme_hint": "本区用于承载你的领域系统与架构笔记（原内容为数据库/缓存/分布式，已剔除）。"
+    },
+    {
+      "path": "06-Sources",
+      "readme_hint": "本区用于承载外部知识源研读沉淀（书/视频/文章/论文），可用 Templates/tpl-source-note.md 起稿。"
+    },
+    {
+      "path": "07-Academics",
+      "readme_hint": "本区用于承载课程实验/学位论文等学术沉淀。"
+    },
+    {
+      "path": "08-Projects",
+      "readme_hint": "项目档案区：每个项目一个子目录（01-ADR/ MADR 编号约定 + AGENT-CONTEXT.md）。脚手架复制 `08-Projects/_template/`；可信度三字段范例见 `examples/ADR/`。"
+    },
+    {
+      "path": "09-Career",
+      "readme_hint": "本区用于承载职业发展材料（求职/考试/认证）；可用 Templates/tpl-system-design.md 与 tpl-system-design.md 起稿。"
+    },
+    {
+      "path": "10-Daily",
+      "readme_hint": "本区承载每日流水台账（保持纯净，不堆规则）。"
+    },
+    {
+      "path": "99-Inbox",
+      "readme_hint": "本区是 Landing Zone：Agent 沉淀草稿与外部摄取先进此处，再由 vault-inbox-consolidate 晋级到正式区，草稿 TTL 7 天。"
+    }
+  ],
+  "packager_obligations": {
+    "stub_zone_readme": "为每个 stub_zone 生成/改写 README.md（内容取 readme_hint），保证目录在 git 中可见且接收者知道该填什么。",
+    "routing_prune": "**关键**：剔除 03-Languages 后，scripts/routing.json 中指向 03-Languages/* 的 dual 路由与其测试断言（test_routing_loader 的 LEGACY 基线）必须同步裁剪，否则接收者首跑 pytest/healthcheck 即红。",
+    "home_generalize": "Home.md 导航表改为「通用区说明 + 如何建你的领域 MOC」；控制舱与热力图保留（引擎能力）；移除指向被剔除笔记的 wikilink。",
+    "link_repair": "剔除后 MUST 跑 healthcheck Check 2，对指向已剔除笔记的 wikilink 做中性化，包内 0 断链。",
+    "placeholder_rewrite": "保留文件中的作者绝对路径统一替换为 {{VAULT_ROOT}} 或相对路径。",
+    "first_run": "包内首跑 MUST 通过：pytest / quality --strict / healthcheck / search-vault，且首提交穿过三道门（2026-09-10 彩排已达标）。"
+  },
+  "lint_forbidden_regex": [
+    {
+      "pattern": "haoyu",
+      "rationale": "作者名任意大小写"
+    },
+    {
+      "pattern": "d:[\\\\/+]+obsidian[\\\\/+]+coding",
+      "rationale": "库根全变体（含转义双反斜杠）"
+    },
+    {
+      "pattern": "d:[\\\\/+]+code(?![-\\w])",
+      "rationale": "代码根全变体"
+    },
+    {
+      "pattern": "6[._ -]?824|15[._ -]?445|cs[._ -]?144",
+      "rationale": "课程编号全变体"
+    },
+    {
+      "pattern": "八股|baguwen",
+      "rationale": "中文原词与拼音变体"
+    },
+    {
+      "pattern": "listencode|lover.instance|vault.evolution",
+      "rationale": "私有项目名变体"
+    }
+  ],
+  "overrides": [
+    {
+      "path": "README.md",
+      "source": "template-overrides/README.md",
+      "rationale": "公开包 README 用通用定位版（私有 README 保留作者工作台语境与 symlink 语义）"
+    }
+  ]
+}

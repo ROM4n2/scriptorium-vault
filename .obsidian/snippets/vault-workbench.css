@@ -1,0 +1,646 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap");
+
+/* ── 示例项目 Design System v3.0 — Academic Engineering Workbench ─────────── */
+
+.vault-workbench,
+.workspace-leaf .markdown-rendered.vault-workbench,
+.markdown-preview-view.vault-workbench,
+.markdown-rendered.vault-workbench {
+  --paper: var(--background-primary, #FAF8F5);
+  --paper-card: var(--background-secondary, #FFFFFF);
+  --paper-warm: var(--background-secondary-alt, #F7F4EC);
+  --paper-tint: var(--background-secondary-alt, #F2ECE1);
+  --paper-accent: #EDE7DA;
+  --paper-deep: #E6DDD0;
+  
+  --ink: var(--text-normal, #15140F);
+  --pencil: var(--text-muted, #5C554B);
+  --muted: var(--text-faint, #8C8477);
+  --rule: var(--background-modifier-border, #D8D0C2);
+  --rule-light: var(--background-modifier-border, #EBE5DA);
+  
+  --coral: #ED6F5C;
+  --coral-soft: #F08E7C;
+  --accent: #C14A2B;
+  --accent-hover: #A83B1F;
+  --amber: #D9771C;
+  --moss: #3B6E3F;
+  --forest: #204B24;
+  --danger: #B03030;
+  
+  --shadow-hard: 2px 2px 0 var(--ink);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  --serif-display: "Playfair Display", "DM Serif Text", Georgia, "Songti SC", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", "JetBrains Mono", Consolas, monospace;
+
+  font-family: var(--sans);
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+/* Dark Theme Adaptations */
+.theme-dark .vault-workbench,
+.theme-dark .workspace-leaf .markdown-rendered.vault-workbench,
+.theme-dark .markdown-rendered.vault-workbench {
+  --paper: var(--background-primary, #0F172A);
+  --paper-card: var(--background-secondary, #1E293B);
+  --paper-warm: var(--background-secondary-alt, #243044);
+  --paper-tint: var(--background-secondary-alt, #28354D);
+  --paper-accent: #334155;
+  --paper-deep: #475569;
+  
+  --ink: var(--text-normal, #F8FAFC);
+  --pencil: var(--text-muted, #94A3B8);
+  --muted: var(--text-faint, #64748B);
+  --rule: var(--background-modifier-border, #334155);
+  --rule-light: var(--background-modifier-border, #1E293B);
+  
+  --coral: #F87171;
+  --accent: #F97316;
+  --amber: #FBBF24;
+  --moss: #34D399;
+  --forest: #10B981;
+  
+  --shadow-hard: 2px 2px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* ── 1. Top Metadata Ticker Strip (36px Ultra-slim Live Strip) ───────────── */
+.top-ticker {
+  height: 38px;
+  background: var(--paper-tint);
+  border: 1px solid var(--rule);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 6px 6px 0 0;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.topbar-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pencil);
+}
+
+.topbar-inner b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.topbar-inner .coral {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.topbar-inner .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--moss);
+  display: inline-block;
+  margin-right: 6px;
+  box-shadow: 0 0 0 2px rgba(59, 110, 63, 0.35);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ── 2. Home Hero Masthead (Gutenberg Academic Masthead) ─────────────────── */
+.home-hero-box {
+  background: var(--paper-card);
+  border: 1.5px solid var(--ink);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 1.75rem 2rem 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--paper-warm);
+  margin-bottom: 0.75rem;
+}
+
+.home-hero-title {
+  font-family: var(--serif-display) !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.015em;
+  color: var(--ink) !important;
+  margin: 0.25rem 0 0.5rem 0 !important;
+}
+
+.home-hero-title .accent-word {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.home-hero-desc {
+  font-size: 0.88rem;
+  color: var(--pencil);
+  line-height: 1.55;
+  max-width: 720px;
+  margin: 0 0 1.25rem 0;
+}
+
+/* CEFR / Standards Pill Legend Bar */
+.cefr-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  padding: 0.65rem 0.95rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.cefr-legend strong {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.hl-pill {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hl-A1 { background: #E3EFFB; color: #1D548C; }
+.hl-A2 { background: #D6ECCF; color: #20662A; }
+.hl-B1 { background: #FDE9BD; color: #825C00; }
+.hl-B2 { background: #FDE0D7; color: #91261B; }
+.hl-C1 { background: #EFE2FA; color: #522485; }
+
+/* ── 3. Section Labels (章节标尺) ────────────────────────────────────────── */
+.section-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.35rem;
+  margin: 1.75rem 0 0.85rem 0;
+}
+
+.section-title {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.section-tag {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--pencil);
+}
+
+/* ── 4. Action Deck & Tactile Buttons (物理触感按键控制舱) ───────────────── */
+.deck-card {
+  background: var(--paper-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.btn-grid-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+/* 分组标题 / 一键巡检按钮：在栅格里必须跨整行，
+   （flex-basis:100% 在 grid 容器里无效，会让标题各占一格打乱排版） */
+.btn-grid-deck > .dl-group-title,
+.btn-grid-deck > .dl-btn[data-act="audit-all"] {
+  grid-column: 1 / -1;
+}
+
+.dl-group-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--text-faint, #8C8477);
+  border-bottom: 1px dotted var(--rule, #D8D0C2);
+  padding-bottom: 0.15rem;
+  margin-top: 0.2rem;
+}
+
+.dl-btn {
+  min-height: 48px;
+  min-width: 0;              /* 栅格子项默认 min-width:auto 会因长命令撑破列 */
+  background: var(--paper-warm);
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  box-shadow: 1px 1px 0 var(--rule);
+}
+
+.dl-btn:hover {
+  background: var(--paper-accent);
+  border-color: var(--ink);
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hard);
+}
+
+.dl-btn.is-running {
+  border-color: var(--amber);
+  background: #FFFBE6;
+}
+
+.dl-btn-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dl-btn-index {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 副标题是完整命令（如 vault-inbox-consolidate.py --apply）——
+   长英文/路径无空格可断，必须显式允许换行与断词，否则溢出格子 */
+.dl-btn-sub {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--pencil);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+/* ── 5. Bulletproof High-Contrast Terminal Window ────────────────────────── */
+.letterpress-terminal {
+  background: #0D1117 !important;
+  border: 1.5px solid #30363D !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-hard) !important;
+  margin-top: 0.5rem;
+}
+
+.terminal-header {
+  background: #161B22 !important;
+  border-bottom: 1px solid #30363D !important;
+  padding: 0.45rem 0.95rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: #8B949E !important;
+}
+
+.terminal-clear-btn {
+  background: transparent !important;
+  border: 1px solid #30363D !important;
+  color: #8B949E !important;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.terminal-clear-btn:hover {
+  background: #30363D !important;
+  color: #F0F6FC !important;
+}
+
+/* Terminal Content Text — Maximum contrast on dark #0D1117 background */
+.terminal-content,
+.markdown-rendered pre.terminal-content,
+.workspace-leaf .markdown-rendered pre.terminal-content,
+pre.terminal-content {
+  font-family: var(--mono) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.55 !important;
+  color: #58A6FF !important;
+  background-color: #0D1117 !important;
+  background: #0D1117 !important;
+  border: none !important;
+  padding: 0.95rem 1.15rem !important;
+  max-height: 260px !important;
+  overflow-y: auto !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  margin: 0 !important;
+}
+
+.terminal-content code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* ── 6. Parchment Activity Heatmap (羊皮纸沉淀热力图) ────────────────────── */
+.heatmap-dossier {
+  background: var(--paper-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.heatmap-svg-scroll {
+  overflow-x: auto;
+  padding: 0.5rem 0 0.35rem 0;
+}
+
+/* ── 6b. Activity Heatmap 动效（GitHub 风格：入场弹入 + 悬停描边） ────────── */
+@keyframes hm-pop {
+  from { opacity: 0; transform: scale(0.35); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hm-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hm-pop 0.32s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  transition: stroke 0.15s ease, filter 0.15s ease;
+  cursor: pointer;
+}
+
+.hm-cell:hover {
+  stroke: var(--text-normal, #15140F);
+  stroke-width: 1.5;
+  filter: brightness(1.08);
+}
+
+/* 尊重系统的「减少动态效果」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .hm-cell { animation: none; }
+}
+
+/* 控制舱：写盘按钮用警示色边框与只读按钮区分（读/写分界） */
+.dl-btn[data-kind="write"] {
+  border-color: rgba(140, 47, 57, 0.45);
+}
+.dl-btn[data-kind="write"]:hover {
+  border-color: rgba(140, 47, 57, 0.9);
+}
+
+/* 年份切换 */
+.hm-nav-btn {
+  background: var(--paper-warm, #F7F4EC);
+  border: 1px solid var(--rule, #D8D0C2);
+  border-radius: 4px;
+  color: var(--text-muted, #5C554B);
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.15rem 0.4rem;
+  cursor: pointer;
+}
+.hm-nav-btn:hover:not([disabled]) { border-color: var(--accent, #8C2F39); color: var(--text-normal); }
+.hm-nav-btn[disabled] { opacity: 0.35; cursor: default; }
+
+/* 点击后的当日清单 */
+.hm-detail {
+  margin-top: 0.55rem;
+  padding: 0.5rem 0.7rem;
+  border-top: 1px dashed var(--rule, #D8D0C2);
+  font-size: 0.74rem;
+}
+/* 未点击时完全收起，不占位 */
+.hm-detail:empty {
+  display: none;
+}
+.hm-detail a { text-decoration: none; }
+.hm-detail a:hover { text-decoration: underline; }
+.hm-cell.is-active { filter: brightness(1.05); }
+
+/* ── 7. Two-Column Ruled Dossier (项目与特战队档案) ──────────────────────── */
+/* 2026-09-09 修复：断点从「窗口宽度」改为「容器宽度自适应」。
+   Obsidian 笔记区实际宽度远小于窗口（侧边栏 + 行宽设置），原先的
+   @media (max-width: 820px) 只看视口，窗口够宽时仍强制两列，右侧卡片
+   被挤出可视区（特战专家名册显示不全）。auto-fit + minmax 由容器实际
+   宽度决定列数，容器不够宽即自动堆叠。 */
+.two-column-dossier {
+  display: grid;
+  /* 阈值 360px：容器 ≥ ~740px 才分两列，否则自动堆叠为上下两块
+     （想更早分栏就调小这个数，想永远堆叠就调到 999px） */
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
+}
+
+/* 栅格子项默认 min-width: auto —— 内容会撑破容器被裁掉而非收缩换行。
+   min-width: 0 允许收缩；overflow-wrap 兜住长命令/路径等不可断词。 */
+.two-column-dossier > * {
+  min-width: 0;
+}
+
+.two-column-dossier .dossier-card,
+.two-column-dossier .starfleet-cell {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+  .two-column-dossier {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dossier-card {
+  background: var(--paper-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 1.15rem 1.4rem;
+  box-shadow: var(--shadow-hard);
+}
+
+/* Classic Ruled Article Rows */
+.article-row-dossier {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s ease;
+}
+
+.article-row-dossier:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.article-row-dossier:first-child {
+  padding-top: 0;
+}
+
+.dossier-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.dossier-title {
+  font-family: var(--serif-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.dossier-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 3px;
+  border: 1px solid var(--ink);
+}
+
+.dossier-desc {
+  font-size: 0.78rem;
+  color: var(--pencil);
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.dossier-progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dossier-progress-bar {
+  height: 100%;
+  border-radius: 1px;
+}
+
+/* Agent Starfleet Cells */
+.starfleet-grid {
+  display: grid;
+  /* 同步改为容器自适应：窄容器下自动降为 1 列，不再挤压单元格 */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.starfleet-cell {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  transition: all 0.15s ease;
+}
+
+.starfleet-cell:hover {
+  border-color: var(--accent);
+  background: var(--paper-accent);
+  transform: translateY(-1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.starfleet-name {
+  font-family: var(--serif-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.starfleet-spec {
+  font-size: 0.7rem;
+  color: var(--pencil);
+}
+
+.starfleet-cmd {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── 8. Broadsheet Table Styling ─────────────────────────────────────────── */
+.vault-workbench table,
+.vault-workbench .dataview.table-view-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  background: var(--paper-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  margin: 0.75rem 0 1.5rem 0;
+  box-shadow: var(--shadow-hard);
+}
+
+.vault-workbench th {
+  background: var(--paper-tint);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--ink);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.vault-workbench td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  color: var(--ink);
+}

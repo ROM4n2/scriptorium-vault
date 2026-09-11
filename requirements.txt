@@ -1,0 +1,8 @@
+# CI dependencies for scripts/vault-quality-check.py and the scripts/tests/ suite
+# Ensures CI runs the same PyYAML parser path as local (no regex fallback)
+PyYAML>=6.0,<7
+# CI runs `python -m pytest scripts/tests/ -v`; setup-python provisions a clean
+# interpreter with no pytest, so it must be declared here. Floor is the version
+# the suite is verified green on locally (needs Python >=3.10; CI matrix 3.10-3.12).
+# 上限防大版本击穿套件（2026-09-11 二评建议）。
+pytest>=9.1.1,<10

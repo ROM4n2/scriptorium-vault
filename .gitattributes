@@ -1,0 +1,22 @@
+# 仓库内统一以 LF 存储；工作区保持平台原生行尾（Windows 检出仍为 CRLF，不改写）。
+#
+# 为什么显式声明而非依赖 core.autocrlf：
+# 本库仓库存储当前已全部是 LF，但这一致性依赖每台机器的 core.autocrlf 配置正确。
+# text=auto 把它固化为仓库自带的约束，任何克隆无论本地如何配置都不会把 CRLF 写进仓库。
+#
+# CRLF 一旦混入仓库存储，跨机器会引发（claude-obsidian 项目已复现，本机当前未触发）：
+#   1. YAML Frontmatter 的 "---" 分隔行尾随 \r，字段被解析为空；
+#   2. 同一内容因行尾不同产生不同哈希，基于内容哈希的检索/去重返回零结果。
+#
+# 注：text=auto 仅规范入库字节，不重写工作区文件，因此不会产生整库重规范化提交。
+
+* text=auto
+
+# ── Shell / Git hooks MUST 以 LF 检出与打包（2026-09-10 发布彩排实证） ──────────
+# Windows 下 core.autocrlf=true 时，git archive 会把 shell 脚本转成 CRLF，
+# 解包后 bash -n 报 `syntax error near unexpected token 'done'` / `unexpected
+# end of file` → .githooks 三道提交门在接收者机器上整体报废（静默失效）。
+# eol=lf 覆盖本地 autocrlf 配置，保证任何 clone / 任何出包形态都是 LF。
+*.sh text eol=lf
+.githooks/pre-commit text eol=lf
+.githooks/gates/* text eol=lf

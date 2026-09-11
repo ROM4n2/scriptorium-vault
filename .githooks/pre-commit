@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# Git Pre-commit Hook for Coding Vault ({{VAULT_ROOT}})
+# Thin manifest router: reads hooks/hooks.json and executes every hook whose
+# stage is "pre-commit" in manifest order. Any failing hook aborts the commit.
+# Gate logic lives in .githooks/gates/*.sh — line-for-line extracted from the
+# former monolithic pre-commit (see each gate's header for source line ranges).
+# Adding/removing/reordering pre-commit hooks = edit hooks/hooks.json only.
+# ==============================================================================
+
+set -euo pipefail
+
+VAULT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$VAULT_DIR"
+
+echo "=== [Git Pre-commit Hook] Starting Gatekeeper Validations ==="
+
+MANIFEST="$VAULT_DIR/hooks/hooks.json"
+
+PYTHON_CMD="python"
+if command -v python3 >/dev/null 2>&1; then
+    PYTHON_CMD="python3"
+fi
+
+# Route: emit "<id>\t<entry>" for each stage=pre-commit hook, in manifest
+# order (manifest order IS execution order). A corrupt/unreadable manifest
+# fails here (set -e) and aborts the commit — fail closed, never open.
+MANIFEST_ENTRIES=$("$PYTHON_CMD" - "$MANIFEST" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as fh:
+    manifest = json.load(fh)
+for hook in manifest["hooks"]:
+    if hook["stage"] == "pre-commit":
+        print(f"{hook['id']}\t{hook['entry']}")
+PY
+)
+
+while IFS=$'\t' read -r HOOK_ID HOOK_ENTRY; do
+    if [ -z "$HOOK_ID" ]; then
+        continue
+    fi
+    if [ -z "$HOOK_ENTRY" ]; then
+        echo "❌ ERROR: [$HOOK_ID] has an empty entry in hooks.json; fix the manifest."
+        exit 1
+    fi
+    echo "→ [$HOOK_ID] $HOOK_ENTRY"
+    bash -c "$HOOK_ENTRY" || {
+        RC=$?
+        echo "❌ ERROR: pre-commit hook [$HOOK_ID] failed (rc=$RC). Commit aborted."
+        exit "$RC"
+    }
+done <<< "$MANIFEST_ENTRIES"
+
+echo "🎉 All pre-commit gatekeeper checks passed!"
+exit 0

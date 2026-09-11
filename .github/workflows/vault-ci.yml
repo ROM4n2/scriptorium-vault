@@ -1,0 +1,53 @@
+name: Vault Quality & Link Integrity Gatekeeper
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  quality-gatekeeper:
+    name: Lint Frontmatter, Wikilinks & Dual-Version AST
+    runs-on: ubuntu-latest
+
+    steps:
+      # MUST run before checkout: the runner image defaults to core.autocrlf=true,
+      # which would rewrite line endings on checkout. The repo ships .gitattributes
+      # with `* text=auto` (stored as LF), and CRLF rewriting corrupts frontmatter
+      # parsing and content hashes. Check out the bytes exactly as stored.
+      - name: 🔧 Disable autocrlf (checkout LF unmodified)
+        run: git config --global core.autocrlf false
+
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: 🐍 Set up Python (3.10–3.12 matrix)
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: ${{ matrix.python-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+      - name: 📦 Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: 🧪 Run Test Suite
+        run: |
+          python -m pytest scripts/tests/ -v
+
+      - name: 🛡️ Run Vault Strict Quality Gatekeeper
+        run: |
+          python scripts/vault-quality-check.py --strict
+
+      # Hermeticity gate: no CI step may mutate tracked files or leave stray
+      # artifacts behind. pytest's .pytest_cache/ is exempt because pytest writes
+      # a self-ignoring .pytest_cache/.gitignore ("*"), which --untracked-files=all
+      # still honours; scripts/**/__pycache__ is covered by the repo .gitignore.
+      - name: 🔍 Verify no tracked files were modified
+        run: git diff --exit-code
+
+      - name: 🔍 Verify no untracked artifacts were left behind
+        run: test -z "$(git status --porcelain=v1 --untracked-files=all)"

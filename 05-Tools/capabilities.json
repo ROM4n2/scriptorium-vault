@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "generated_tooling": "capability-check.py",
+  "capabilities": [
+    {
+      "name": "vault-quality-check",
+      "type": "script",
+      "tier": "core",
+      "verification_command": "python scripts/vault-quality-check.py --strict",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-healthcheck",
+      "type": "script",
+      "tier": "core",
+      "verification_command": "python scripts/vault-healthcheck.py",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "search-vault",
+      "type": "script",
+      "tier": "core",
+      "verification_command": "python scripts/search-vault.py \"test\" --format compact",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-dedup",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-dedup.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-auto-linker",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-auto-linker.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-graph-analyzer",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-graph-analyzer.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-knowledge-graph",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-knowledge-graph.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-inbox-triage",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-inbox-triage.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-inbox-consolidate",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-inbox-consolidate.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-memory-compactor",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-memory-compactor.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-proactive-scan",
+      "type": "script",
+      "tier": "extension",
+      "verification_command": "python scripts/vault-proactive-scan.py --json",
+      "declared_status": "verified",
+      "section": "scripts",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault_search_mcp (9 tools)",
+      "type": "mcp",
+      "tier": "core",
+      "verification_command": "python scripts/mcp_probe.py scripts/vault_search_mcp.py --expect-tools 9",
+      "declared_status": "verified",
+      "section": "mcp",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "arxiv_paper_mcp (2 tools)",
+      "type": "mcp",
+      "tier": "extension",
+      "verification_command": "python scripts/mcp_probe.py scripts/arxiv_paper_mcp.py --expect-tools 2",
+      "declared_status": "verified",
+      "section": "mcp",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "sqlite_inspector_mcp (3 tools)",
+      "type": "mcp",
+      "tier": "extension",
+      "verification_command": "python scripts/mcp_probe.py scripts/sqlite_inspector_mcp.py --expect-tools 3",
+      "declared_status": "verified",
+      "section": "mcp",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "system_monitor_mcp (4 tools)",
+      "type": "mcp",
+      "tier": "extension",
+      "verification_command": "python scripts/mcp_probe.py scripts/system_monitor_mcp.py --expect-tools 4",
+      "declared_status": "verified",
+      "section": "mcp",
+      "scope": "read-only",
+      "confirmation_required": false
+    },
+    {
+      "name": "vault-tools",
+      "type": "skill",
+      "tier": "core",
+      "verification_command": null,
+      "declared_status": "configured",
+      "section": "skills",
+      "scope": "read-only",
+      "confirmation_required": true
+    },
+    {
+      "name": "vault-maintain",
+      "type": "skill",
+      "tier": "core",
+      "verification_command": null,
+      "declared_status": "configured",
+      "section": "skills",
+      "scope": "read-only",
+      "confirmation_required": true
+    }
+  ]
+}

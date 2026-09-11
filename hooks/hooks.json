@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "hooks": [
+    {
+      "id": "gate1-secret",
+      "stage": "pre-commit",
+      "matcher": "*",
+      "timeout_s": 60,
+      "entry": "bash .githooks/gates/gate1-secret.sh",
+      "source": "legacy",
+      "description": "Gate 1: Secret Key Leak Scanner (staged diff, from .githooks/pre-commit lines 16-36)"
+    },
+    {
+      "id": "gate15-url",
+      "stage": "pre-commit",
+      "matcher": "*",
+      "timeout_s": 120,
+      "entry": "bash .githooks/gates/gate15-url.sh",
+      "source": "legacy",
+      "description": "Gate 1.5: URL Credential Leak Scanner via scripts/url_safety.py --git-staged (from .githooks/pre-commit lines 38-52)"
+    },
+    {
+      "id": "gate2-quality",
+      "stage": "pre-commit",
+      "matcher": "*",
+      "timeout_s": 300,
+      "entry": "bash .githooks/gates/gate2-quality.sh",
+      "source": "legacy",
+      "description": "Gate 2: Vault Quality & Dual-Version AST Alignment Checker --strict (from .githooks/pre-commit lines 54-65)"
+    },
+    {
+      "id": "post-write-sync-agents",
+      "stage": "posttooluse",
+      "matcher": "Write|Edit",
+      "timeout_s": 60,
+      "entry": "bash .claude/hooks/post-write-sync-agents.sh",
+      "source": "legacy",
+      "description": "Claude harness PostToolUse(Write|Edit): sync agents doc; registered only, runtime stays bound in .claude/settings.json"
+    },
+    {
+      "id": "stop-hook-ingest",
+      "stage": "stop",
+      "matcher": "*",
+      "timeout_s": 120,
+      "entry": "python scripts/stop-hook-ingest.py",
+      "source": "legacy",
+      "description": "Claude harness Stop: session transcript ingest; registered only, runtime stays bound in .claude/settings.json"
+    }
+  ]
+}
