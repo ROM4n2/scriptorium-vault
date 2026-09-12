@@ -8,7 +8,7 @@
 
 1. **先读全局规则**：Agent **MUST** 首先读取 `~/.claude/CLAUDE.md`（本机环境事实、反奉承哲学与防泄露守卫；若该文件不存在——例如模板包接收者环境——则跳过此步）。
 2. **后读 Vault 规则**：Agent **MUST** 随后加载本文件。
-3. **开工必读**：任何代码编写/重构/设计前，**MUST** 先加载 〔你的个人画像〕 与 〔你的领域通用规范〕。
+3. **开工必读**：任何知识产出/重构/设计前，**MUST** 先加载 〔你的个人画像〕 与 〔你的领域通用规范〕。
 
 > **记号约定**：凡 `〔…〕` 形态的路径，表示"该文件需按你的领域自建"——在本库中它们是实文件；在公开模板包中是占位（质量门禁自动豁免其 wikilink）。
 4. **单源一致**：`CLAUDE.md`/`GEMINI.md`/`.cursorrules`/`.windsurfrules`/`CONVENTIONS.md` 均为指向本文件的符号链接（模板包中为**字节一致的内容副本**），**MUST NOT** 覆写为独立实体，修改 **MUST** 仅作用于本文件（副本形态由 `post-write-sync-agents.sh` 同步）。
@@ -17,9 +17,9 @@
 
 ## 2. Vault 定位与作用域
 
-1. **核心定位**：`{{VAULT_ROOT}}` 是编程学习沉淀与工程规则速查的 **LLM-Native 知识库**。
+1. **核心定位**：`{{VAULT_ROOT}}` 是知识沉淀与规范速查的 **LLM-Native 知识库**。
 2. **职责边界**：本 Vault **IS** 知识资产与规范源；**IS NOT** 项目运行代码仓库（代码统一在 `{{CODE_ROOT}}\`）。
-3. **引用格式**：库内引用 **MUST** 用 Wikilink（`GO-STANDARDS`）；跨库引用项目 **MUST** 标注绝对路径（`{{CODE_ROOT}}\{project}`）。
+3. **引用格式**：库内引用 **MUST** 用 Wikilink（`[[01-Rules/CODING-UNIVERSAL]]`）；跨库引用项目 **MUST** 标注绝对路径（`{{CODE_ROOT}}\{project}`）。
 
 ---
 

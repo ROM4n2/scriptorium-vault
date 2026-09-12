@@ -1,5 +1,5 @@
 ---
-title: "Coding Vault 使用教程（5 分钟上手 + 日常任务 Playbook）"
+title: "Scriptorium Vault 使用教程（5 分钟上手 + 日常任务 Playbook）"
 created: 2026-09-09
 updated: 2026-09-11
 type: notes
@@ -15,9 +15,9 @@ claim_risk: low
 review_status: unreviewed
 ---
 
-# Coding Vault 使用教程
+# Scriptorium Vault 使用教程
 
-> 读者：接手本知识库的**人类开发者**与 **AI Agent**。规范细节以 `AGENTS.md` 与 `01-Rules/` 为准，本教程只讲「怎么用」；README 讲「是什么与怎么装」。
+> 读者：接手本知识库的**人类用户**与 **AI Agent**。规范细节以 `AGENTS.md` 与 `01-Rules/` 为准，本教程只讲「怎么用」；README 讲「是什么与怎么装」。
 
 ---
 
@@ -28,7 +28,7 @@ review_status: unreviewed
 - **可信度三字段**：每篇正式笔记的 frontmatter 带 `authority`（official/primary/secondary/community/synthetic/unknown）+ `claim_risk`（none/low/medium/high）+ `review_status`（unreviewed/reviewed）。字段含义见 `08-Projects/README.md`（模板包接收者：先读 `examples/ADR/0001-example-reading-workflow.md`，那里有带三字段的完整范例）。
 - **★ 先看 examples/**：`examples/`（阅读工作流 ADR / RCA / 速查表）是"一篇合规笔记长什么样"的标准答案——写第一篇笔记前先照着它。
 
-**目录速查**：`00-MOC/` 导航 → `01-Rules/` 跨语言铁律 → `03-Languages/` 语言双版本 → `04-Systems/` 架构学科 → `05-Tools/` 工具 → `06-Sources/` 外部研读 → `08-Projects/` 项目与 ADR → `09-Career/` 求职 → `10-Daily/` 个人日志 → `99-Inbox/` 草稿区。完整职责表见 `01-Rules/VAULT-STRUCTURE.md`。
+**目录速查**：`00-MOC/` 导航 → `01-Rules/` 通用规范 → `03-Languages/` 领域双版本 → `04-Systems/` 领域学科 → `05-Tools/` 工具 → `06-Sources/` 外部研读 → `08-Projects/` 项目与 ADR → `09-Career/` 职业 → `10-Daily/` 个人日志 → `99-Inbox/` 草稿区。完整职责表见 `01-Rules/VAULT-STRUCTURE.md`。
 
 ---
 
@@ -68,7 +68,7 @@ review_status: unreviewed
 ## 3. Agent 专属纪律
 
 1. **读序**（进会话第一件事）：`AGENTS.md` → `01-Rules/〔你的个人画像〕` + `〔你的领域通用规范〕` → 项目 `WORKMEMORY/INDEX.md` → `work.log` 尾 50 行 → `corrections.md` open 条目（**不重犯已登记纠正**）。
-2. **检索优先**：写代码/查方案前先 `search-vault`（MCP: coding-vault-search）查库，命中即复用，禁止凭记忆重写既有规范。
+2. **检索优先**：写内容/查方案前先 `search-vault`（MCP: coding-vault-search）查库，命中即复用，禁止凭记忆重写既有规范。
 3. **沉淀闭环**：会话结束前必问「用户纠正过什么」→ 未落地的写入 `corrections.md`（open 行）+ 交接卡；成熟纠正经 `/vault-save` 蒸馏后回填 `vault://` 路径并置 closed。
 4. **收尾**：临时文件清干净；`work.log` 补 `WORK_END`；交接卡按 token 预算分节（vault-handoff SKILL v2）。
 

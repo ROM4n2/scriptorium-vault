@@ -7,23 +7,18 @@ description: Orchestrate parallel multi-expert subagent review (Product/UX, Fron
 
 Orchestrate a full-spectrum domain-specialist subagent swarm to audit code in parallel across **User Experience + Architecture + Database + Performance + Security**, synthesizing an actionable verdict.
 
-## Phase 1: Swarm Dispatch (Parallel Fan-out)
-Dispatch the relevant seats **concurrently in a single message** (one Agent call per seat, `subagent_type` exactly as written below). These are real agent types in `~/.claude/agents/` — do not invent a seat name, and do not silently fall back to a general-purpose agent if one is missing: report the missing seat instead.
+## Phase 1: Multi-Expert Review
 
-| Seat | `subagent_type` | Covers |
-|---|---|---|
-| User Experience & Product | `product-ux` | Real need vs imagined, journey friction, error messaging |
-| Frontend & State Systems | `frontend-architect` | Async races, offline/reconnect, render cost, leaks |
-| Database & Storage | `dba-optimizer` | Index coverage, EXPLAIN, locks, transaction scope |
-| Performance & Concurrency | `perf-profiler` | Data races, hot paths, allocation pressure, contention |
-| Code Quality & Standards | `code-reviewer` | Red/Yellow cards, Ladder of Reuse, YAGNI, dead-green tests |
-| SRE & Availability | `sre-resilience` | Timeouts, retries, failure modes, resource bounds, secrets |
-| Codebase recon (optional) | `codebase-researcher` | Pre-flight inventory when the target scope is unclear |
-| Code-structure recon (optional) | `codegraph-explorer` | Call chains and impact pre-recon when the target involves "who calls X / what breaks if W changes" |
+The skill dispatches a panel of domain specialists in parallel to audit the target from multiple angles. Each expert covers a specific concern:
 
-**Pick seats by what the target actually contains.** A pure-frontend diff does not need `dba-optimizer`; a SQL migration does not need `product-ux`. Dispatching all seats at every target burns tokens and produces filler findings — state which seats you skipped and why (template field, not prose).
+- **Product & UX** -- validates real user need, journey friction, and error messaging
+- **Frontend & State** -- checks async races, offline handling, render cost, and leaks
+- **Database & Storage** -- reviews index coverage, query plans, locks, and transaction scope
+- **Performance & Concurrency** -- profiles hot paths, data races, allocation pressure
+- **Code Quality** -- enforces standards, checks for dead tests and unnecessary complexity
+- **SRE & Resilience** -- audits timeouts, retries, failure modes, and resource bounds
 
-If the target scope is vague, run `codebase-researcher` first. If the target involves call-chain or impact questions, run `codegraph-explorer` first (in parallel with `codebase-researcher` when both apply), then fan out the specialists against what the recon found.
+Only the experts relevant to the target are dispatched. Recon specialists may run first if the target scope is unclear.
 
 ---
 

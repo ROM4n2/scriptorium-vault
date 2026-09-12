@@ -60,20 +60,8 @@ Interview and stress-test the developer's proposed plan, architecture, or design
                    自动归档正式 ADR-000x 架构决策
 ```
 
-### Stage 1: Dual-Lens Background Inquest (Parallel Fan-out)
-When the proposal is complex enough that background research pays for itself, dispatch the relevant seats **concurrently in one message**, using these exact `subagent_type` values (real agents in `~/.claude/agents/`):
-
-| Lens | `subagent_type` | Grills on |
-|---|---|---|
-| Product & UX | `product-ux` | Real pain vs imagined need, journey friction, mental model, human-readable failure |
-| Frontend & State | `frontend-architect` | State machine consistency, async races, offline/reconnect, render cost |
-| Backend & Concurrency | `code-reviewer` | Thread/goroutine lifecycle, lock scope, transaction boundaries, silent errors |
-| Storage & DBA | `dba-optimizer` | Schema shape, index coverage, query cost, lock ordering |
-| SRE & Resilience | `sre-resilience` | Downstream timeouts, retries, failure modes, resource bounds |
-
-**Only dispatch the lenses the proposal actually touches.** For a small or purely local design decision, skip Stage 1 entirely and go straight to Stage 3 — a five-agent panel on a two-file change is theatre, and the specialists will manufacture findings to justify their seat.
-
-Never block the human on the fan-out: if a seat returns nothing substantive, drop it from the synthesis rather than padding a round with it.
+### Stage 1: Dual-Lens Background Research (Parallel Fan-out)
+When the proposal is complex enough, domain specialists are dispatched in parallel to stress-test the design from multiple angles. Only the lenses relevant to the proposal are activated -- small or local decisions skip this stage entirely. Specialists returning no substantive findings are dropped from synthesis rather than padded.
 
 ### Stage 2: Context Ingestion & The Ladder of Reuse
 Query `omni_search(proposal, scope='ladder')` to challenge against **The Ladder of Reuse (RFC 2119 MUST)**:
@@ -106,8 +94,8 @@ Recompute the frontier on each user reply. Move outward until the frontier is co
 Summarize consensus into a formal **Architecture Decision Record (ADR-000x)**:
 - Context, Decision Drivers (both User & Tech), Considered Options, Pros/Cons, Decision Outcome, and Consequences.
 - Dual-Track Ingestion Gate:
-  - Option 1: Draft in `08-Inbox/`
-  - Option 2: Direct promotion to `05-Projects/{project}/01-ADR/` or `01-Rules/`.
+  - Option 1: Draft in `99-Inbox/`
+  - Option 2: Direct promotion to `08-Projects/{project}/01-ADR/` or `01-Rules/`.
 
 ---
 

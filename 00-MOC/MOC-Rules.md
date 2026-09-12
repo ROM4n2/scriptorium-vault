@@ -15,7 +15,7 @@ review_status: unreviewed
 
 # ⚖️ 规则与工程规范导航索引 (MOC-Rules)
 
-> 本索引汇集知识库内所有跨语言、跨项目通用的工程准则、Agent 交互契约、Git 工作流与协作机制，构筑全局代码质量与行为安全底线。
+> 本索引汇集知识库内所有跨项目通用的工程准则、Agent 交互契约、Git 工作流与协作机制，构筑全局质量与行为安全底线。
 
 ---
 
@@ -32,11 +32,11 @@ review_status: unreviewed
 | 🛠️ SKILL-AUTHORING-SPEC | **Agent 技能工程与编写规范**：第一性原理、TDD 驱动、Leading Words 概念锚定、六大失效模式防线 | `both` | `MUST` | `stable` |
 | 🖥️ 环境说明 | **本机开发环境拓扑与避坑事实**：网络检索、MSYS2软链接、席皓宇符号链接、WSL2镜像网络、Docker端口 | `agent` | `MUST` | `stable` |
 | 🧠 数据规范 | **数据集与语料库洁净度守则**：严禁语义默认兜底桶、分类纯度契约测试、语法模板防幻觉 | `both` | `MUST` | `stable` |
-| 📐 〔你的领域通用规范〕 | 跨语言通用编码规范（11 大原则）、意图命名、单一职责、Raw Response 缓存、断言自问、替换安全、终端适配 | `both` | `MUST` / `SHOULD` | `stable` |
+| 📐 〔你的领域通用规范〕 | 通用编码规范（11 大原则）、意图命名、单一职责、Raw Response 缓存、断言自问、替换安全、终端适配 | `both` | `MUST` / `SHOULD` | `stable` |
 | 🛡️ GIT-CONVENTIONS | Git 提交规范 (Conventional Commits)、分支策略、密钥防泄露与双层历史审计（可达+悬空） | `both` | `MUST` | `stable` |
-| 🔄 领域专题规范 | 跨语言错误处理全景矩阵、四项统一铁律、错误包装与重试弹性策略 | `both` | `MUST` / `SHOULD` | `stable` |
-| ⚡ 领域专题规范 | 跨语言并发控制矩阵、结构化并发、锁作用域最小化与事件循环隔离 | `both` | `MUST` / `SHOULD` | `stable` |
-| 🔬 TESTING-PATTERNS | **跨项目测试防死测模式**：静态断言出现次数预检、动态探针切源码执行、夹具自洽性（恒假夹具禁令） | `both` | `MUST` | `stable` |
+| 🔄 领域专题规范 | 错误处理全景矩阵、四项统一铁律、错误包装与重试弹性策略 | `both` | `MUST` / `SHOULD` | `stable` |
+| ⚡ 领域专题规范 | 并发控制矩阵、结构化并发、锁作用域最小化与事件循环隔离 | `both` | `MUST` / `SHOULD` | `stable` |
+| 🔬 TESTING-PATTERNS | **测试防死测模式**：静态断言出现次数预检、动态探针切源码执行、夹具自洽性（恒假夹具禁令） | `both` | `MUST` | `stable` |
 | 🗂️ MARKDOWN-REGISTRY-VALIDATION | **Markdown 注册表/清单机器校验防御**：被程序消费的表格 MUST 配机器闸门、标题深度容错、L1/L2 分层校验（SKIP vs FAIL） | `both` | `MUST` / `SHOULD` | `stable` |
 | 📝 MARKDOWN-TABLE-APPEND | **Markdown 表格追加与程序化写操作防御**：追加行 MUST 插表格块末、单一写入器、alias 内 `\|` 陷阱、门禁排除 IDE 目录 | `both` | `MUST` / `SHOULD` | `stable` |
 | 🐍 工具链规范 | **Python 打包与模块入口规范**：`__init__.py` 零依赖 re-export、shim 迁移过渡、扁平包结构原则 | `both` | `MUST` | `stable` |
@@ -67,7 +67,7 @@ review_status: unreviewed
 graph TD
     A["1. 全局环境与密钥防线 (Global Rules: ~/.claude/CLAUDE.md)"] --> B["2. Vault 知识库规范 (AGENTS.md / AGENT-CONDUCT.md)"]
     B --> C["3. 通用工程模式 (〔你的领域通用规范〕 / ERROR-HANDLING / CONCURRENCY)"]
-    C --> D["4. 语言专属约束 (03-Languages/*-STANDARDS)"]
+    C --> D["4. 领域专属约束 (03-Languages/*-STANDARDS)"]
     D --> E["5. 项目专属约束 (08-Projects/*)"]
 ```
 
